@@ -1,5 +1,5 @@
 <template>
-  <div v-if="data">
+  <div>
     <div v-show="step == index" v-for="(item, index) in data" :key="index" >
       <div class="xk-qs-form-body">
         <p class="xk-qs-title">{{item.title}}</p>
@@ -127,6 +127,9 @@
       }
     },
     mounted () {
+      if (this.value) {
+        this.form = this.value
+      }
     }
   }
 </script>
