@@ -1,6 +1,6 @@
 {
   "name": "vue-qs-form",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Vue birthady input tool",
   "author": "xank",
   "main": "dist/vue-qs-form.min.js",
