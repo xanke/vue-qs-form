@@ -1,17 +1,19 @@
 <template>
   <div>
-    <div v-show="step == index" v-for="(item, index) in data" :key="index" >
+    <div v-if="step == index" v-for="(item, index) in data" :key="index" >
       <div class="xk-qs-form-body">
         <p class="xk-qs-title">{{item.title}}</p>
-        <el-radio-group @change="onClickRadioHander" class="xk-qs-radio-group" v-model="form[item.key]"> 
-          <el-radio  class="xk-qs-radio-item" :key="index" :label="index + ',' + iItem[0]" v-for="(iItem, index) in item.radios">{{iItem[1]}}</el-radio> 
-        </el-radio-group>
+        <div @click="onClickRadioHander">
+          <el-radio-group class="xk-qs-radio-group" v-model="form[item.key]"> 
+            <el-radio class="xk-qs-radio-item" :key="index" :label="index + ',' + iItem[0]" v-for="(iItem, index) in item.radios">{{iItem[1]}}</el-radio> 
+          </el-radio-group>
+        </div>
       </div>
       <div class="xk-qs-form-footer">
         <el-button class="xk-qs-btn-left" type="default" @click="onPrevHander">{{prevBtnText}}</el-button>
         <el-button v-if="stepNow != stepLength" class="xk-qs-btn-right" type="primary" @click="onNextHander">{{nextBtnText}}</el-button>
         <el-button v-if="stepNow == stepLength" class="xk-qs-btn-right" type="primary" @click="onFinishHander">{{finishBtnText}}</el-button>
-        <el-progress class="xs-qs-progress" :text-inside="true" :stroke-width="10" :percentage="percentage" status="success"></el-progress>
+        <el-progress class="xs-qs-progress" :text-inside="true" :stroke-width="5" :percentage="percentage"></el-progress>
       </div>
     </div>
   </div>
@@ -22,16 +24,32 @@
     color: #000;
     font-weight: block;
   }
+  .xk-qs-radio-group{
+    width: 100% !important;
+  }
   .xk-qs-radio-item {
     display: block !important;
     margin-left: 0px !important;
+    width: 100% !important;
+    margin-bottom:  0px !important;
+    padding: 12px 10px;
   }
   .xk-qs-radio-item:hover {
-    background-color: rgba(250, 250, 250);
+    background-color: rgb(245, 245, 245) !important;
+  }
+  .xk-qs-radio-item .el-radio__label{
+    white-space: normal !important;
+    display: inline-block;
+    line-height: 1.5;
+  }
+  .xk-qs-radio-item .el-radio__input{
+    height: 14px;
+    position: absolute;
+    top: 50%;
+    margin-top: -7px;
   }
   .xk-qs-form-footer {
     margin-top: 45px;
-
   }
   .xk-qs-btn-left{
     float: left;
@@ -46,7 +64,6 @@
     display: none !important;
   }
 </style>
-
 <script>
   export default {
     name: 'vue-qs-form',
