@@ -19,8 +19,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: "vue-birthday-input.min.js",
-    library: 'VueBirthdayInput',
+    filename: "vue-qs-form.min.js",
+    library: 'VueQsForm',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
