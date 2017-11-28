@@ -3,7 +3,7 @@
     <div v-if="step == index" v-for="(item, index) in data" :key="index" >
       <div class="xk-qs-form-body">
         <p class="xk-qs-title">{{item.title}}</p>
-        <div @click="onClickRadioHander">
+        <div @click.once="onClickRadioHander">
           <el-radio-group class="xk-qs-radio-group" v-model="form[item.key]"> 
             <el-radio class="xk-qs-radio-item" :key="index" :label="index + ',' + iItem[0]" v-for="(iItem, index) in item.radios">{{iItem[1]}}</el-radio> 
           </el-radio-group>
@@ -118,6 +118,10 @@
         if (stepNow < this.stepLength) {
           this.step ++
         }
+        if (stepNow == this.stepLength) {
+          console.log('end')
+          this.$emit('atend')
+        }
       },
       // 点击上一部
       onPrevHander () {
@@ -129,6 +133,10 @@
       // 点击完成
       onFinishHander () {
         this.$emit('finish')
+      },
+      // 到达最后
+      onAtendHander () {
+        this.$emit('atend')
       },
       onClickRadioHander() {
         if (this.autoNext) {
