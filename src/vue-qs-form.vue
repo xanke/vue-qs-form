@@ -41,6 +41,7 @@
     white-space: normal !important;
     display: inline-block;
     line-height: 1.5;
+    padding-left: 25px;
   }
   .xk-qs-radio-item .el-radio__input{
     height: 14px;
