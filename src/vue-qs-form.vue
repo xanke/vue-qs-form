@@ -19,6 +19,101 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: 'vue-qs-form',
+  props: {
+    data: {
+      required: true,
+      default: '',
+      type: [Array, Object],
+    },
+    prevBtnText: {
+      default: '上一步',
+      type: String,
+    },
+    nextBtnText: {
+      default: '下一步',
+      type: String,
+    },
+    finishBtnText: {
+      default: '完成',
+      type: String,
+    },
+    value: {
+      default: '',
+      required: true,
+      type: [Object, String, Array]
+    },
+    autoNext: {
+      default: true,
+      type: Boolean
+    }
+  },
+  data : () => ({
+    step: 0,
+    form: {}
+  }),
+  computed: {
+    stepLength () {
+      return this.data.length
+    },
+    stepNow () {
+      return this.step + 1
+    },
+    percentage () {
+      return parseInt(this.stepNow / this.stepLength * 100)
+    }
+  },
+  methods: {
+    // 点击下一步
+    onNextHander () {
+      this.$emit('input', this.form)
+      let stepNow = this.stepNow
+      if (stepNow < this.stepLength) {
+        this.step ++
+      }
+      if (stepNow == this.stepLength) {
+        console.log('end')
+        this.$emit('atend')
+      }
+    },
+    // 点击上一部
+    onPrevHander () {
+      let step = this.step
+      if (step > 0) {
+        this.step --
+      }
+    },
+    // 点击完成
+    onFinishHander () {
+      this.$emit('finish')
+    },
+    // 到达最后
+    onAtendHander () {
+      this.$emit('atend')
+    },
+    onClickRadioHander() {
+      if (this.autoNext) {
+        setTimeout (() => {
+          this.onNextHander()
+        }, 500)
+      }
+    }
+  },
+  watch: {
+    form (nVal, oVal) {
+      this.$emit('input', this.form)
+    }
+  },
+  mounted () {
+    if (this.value) {
+      this.form = this.value
+    }
+  }
+}
+</script>
+
 <style>
   .xk-qs-title {
     color: #000;
@@ -65,97 +160,3 @@
     display: none !important;
   }
 </style>
-<script>
-  export default {
-    name: 'vue-qs-form',
-    props: {
-      data: {
-        required: true,
-        default: '',
-        type: [Array, Object],
-      },
-      prevBtnText: {
-        default: '上一步',
-        type: String,
-      },
-      nextBtnText: {
-        default: '下一步',
-        type: String,
-      },
-      finishBtnText: {
-        default: '完成',
-        type: String,
-      },
-      value: {
-        default: '',
-        required: true,
-        type: [Object, String, Array]
-      },
-      autoNext: {
-        default: true,
-        type: Boolean
-      }
-    },
-    data : () => ({
-      step: 0,
-      form: {}
-    }),
-    computed: {
-      stepLength () {
-        return this.data.length
-      },
-      stepNow () {
-        return this.step + 1
-      },
-      percentage () {
-        return parseInt(this.stepNow / this.stepLength * 100)
-      }
-    },
-    methods: {
-      // 点击下一步
-      onNextHander () {
-        this.$emit('input', this.form)
-        let stepNow = this.stepNow
-        if (stepNow < this.stepLength) {
-          this.step ++
-        }
-        if (stepNow == this.stepLength) {
-          console.log('end')
-          this.$emit('atend')
-        }
-      },
-      // 点击上一部
-      onPrevHander () {
-        let step = this.step
-        if (step > 0) {
-          this.step --
-        }
-      },
-      // 点击完成
-      onFinishHander () {
-        this.$emit('finish')
-      },
-      // 到达最后
-      onAtendHander () {
-        this.$emit('atend')
-      },
-      onClickRadioHander() {
-        if (this.autoNext) {
-          setTimeout (() => {
-            this.onNextHander()
-          }, 500)
-        }
-      }
-    },
-    watch: {
-      form (nVal, oVal) {
-        this.$emit('input', this.form)
-      }
-    },
-    mounted () {
-      if (this.value) {
-        this.form = this.value
-      }
-    }
-  }
-</script>
