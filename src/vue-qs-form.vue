@@ -1,6 +1,5 @@
 <template>
   <div>
-    {{form}}
     <div class="xk-qs-form-body" :style="'height: ' + height">
       <transition-group name="el-fade-in-linear">
         <div class="xk-qs-form-item" v-show="step == index" v-for="(item, index) in data" :key="index" >
