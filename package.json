@@ -1,6 +1,6 @@
 {
   "name": "vue-qs-form",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "Vue quick steps form tool",
   "author": "xank",
   "main": "dist/vue-qs-form.min.js",
@@ -22,8 +22,7 @@
   ],
   "homepage": "https://github.com/xanke/vue-qs-form",
   "license": "MIT",
-  "dependencies": {
-  },
+  "dependencies": {},
   "scripts": {
     "test": "cross-env BABEL_ENV=test ./node_modules/.bin/karma start test/karma.config.js",
     "test:watch": "cross-env BABEL_ENV=test ./node_modules/.bin/karma start test/karma.config.js --single-run=false",
@@ -42,6 +41,7 @@
     "codecov": "^2.3.0",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
+    "element-ui": "^2.0.7",
     "eslint": "^4.6.0",
     "eslint-plugin-vue": "3.13.1",
     "karma": "^1.7.1",
