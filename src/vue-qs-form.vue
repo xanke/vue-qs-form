@@ -13,7 +13,7 @@
       </transition-group>
     </div>
     <div class="xk-qs-form-footer">
-      <el-button class="xk-qs-btn-left" type="default" @click="onPrevHander">{{prevBtnText}}</el-button>
+      <el-button v-show="step > 0" class="xk-qs-btn-left" type="default" @click="onPrevHander">{{prevBtnText}}</el-button>
       <el-button v-if="stepNow != stepLength" class="xk-qs-btn-right" type="primary" @click="onNextHander">{{nextBtnText}}</el-button>
       <el-button v-if="stepNow == stepLength" class="xk-qs-btn-right" type="primary" @click="onSubmitHander">{{submitBtnText}}</el-button>
       <el-progress class="xs-qs-progress" :text-inside="true" :stroke-width="5" :percentage="percentage"></el-progress>
@@ -68,7 +68,7 @@ export default {
       return this.step + 1
     },
     percentage() {
-      let percentage = parseInt(this.stepNow / this.stepLength * 100) || 0
+      let percentage = parseInt(this.step / this.stepLength * 100) || 0
       return percentage
     }
   },
@@ -108,6 +108,7 @@ export default {
     },
     //重置表单
     resetForm() {
+      this.step = 0
       this.form = this.valueInit()
     },
     //表单初始化

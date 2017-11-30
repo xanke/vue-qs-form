@@ -1,6 +1,6 @@
 {
   "name": "vue-qs-form",
-  "version": "0.5.4",
+  "version": "0.5.5",
   "description": "Vue quick steps form tool",
   "author": "xank@qq.com",
   "main": "dist/vue-qs-form.min.js",
