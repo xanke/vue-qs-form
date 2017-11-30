@@ -8,8 +8,11 @@ Vue quick step form, Vue快速问卷表单
 [![Codecov](https://img.shields.io/codecov/c/github/xanke/vue-qs-form.svg)](https://codecov.io/gh/xanke/vue-qs-form)
 [![npm](https://img.shields.io/npm/l/vue-qs-form.svg)](http://opensource.org/licenses/MIT)
 
+****需配合element-ui使用
+https://github.com/elemefe
+****
 
-#### 快速开始
+## 快速开始
 ```js
 import Vue from 'vue'
 import vueQsForm from 'vue-qs-form'
@@ -23,7 +26,7 @@ export default {
 }
 ```
 
-### 示例
+## 示例
 ```vue
 <template>
   <vueQsForm v-model="form" :data="data" @finish="submitForm"></vueQsForm>
@@ -67,10 +70,17 @@ export default {
 |参数|说明|必须|类型|可选值|默认值|
 |-----|-----------|--------|----|----|-------|
 |data|表单数据|是|String|—|—|
+|height|表单高度|否|String|—|250px|
 |autoNext|是否自动下一步|否|Boolean|true/false|false|
 |prevBtnText|上一步按钮文字|否|String|—|上一步|
 |nextBtnText|下一步按钮文字|否|String|—|下一步|
-|finishBtnText|完成按钮文字|否|String|—|完成|
+|submitBtnText|完成按钮文字|否|String|—|提交|
+
+## Event
+|事件名称|说明|回调参数|
+|-----|-----------|--------|
+|submit|点击提交事件|表单数据|
+|atend|到达最后|-|
 
 ## License
 

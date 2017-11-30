@@ -1,20 +1,22 @@
 <template>
   <div>
-    <div v-if="step == index" v-for="(item, index) in data" :key="index" >
-      <div class="xk-qs-form-body">
-        <p class="xk-qs-title">{{item.title}}</p>
-        <div @click.once="onClickRadioHander">
-          <el-radio-group class="xk-qs-radio-group" v-model="form[item.key]"> 
-            <el-radio class="xk-qs-radio-item" :key="index" :label="index + ',' + iItem[0]" v-for="(iItem, index) in item.radios">{{iItem[1]}}</el-radio> 
-          </el-radio-group>
+    <div class="xk-qs-form-body" :style="'height: ' + height">
+      <transition-group name="el-fade-in-linear">
+        <div class="xk-qs-form-item" v-show="step == index" v-for="(item, index) in data" :key="index" >
+          <p class="xk-qs-title">{{item.title}}</p>
+          <div @click.once="onClickRadioHander">
+            <el-radio-group class="xk-qs-radio-group" v-model="form[item.key]"> 
+              <el-radio class="xk-qs-radio-item" :key="index" :label="index + ',' + iItem[0]" v-for="(iItem, index) in item.radios">{{iItem[1]}}</el-radio> 
+            </el-radio-group>
+          </div>
         </div>
-      </div>
-      <div class="xk-qs-form-footer">
-        <el-button class="xk-qs-btn-left" type="default" @click="onPrevHander">{{prevBtnText}}</el-button>
-        <el-button v-if="stepNow != stepLength" class="xk-qs-btn-right" type="primary" @click="onNextHander">{{nextBtnText}}</el-button>
-        <el-button v-if="stepNow == stepLength" class="xk-qs-btn-right" type="primary" @click="onFinishHander">{{finishBtnText}}</el-button>
-        <el-progress class="xs-qs-progress" :text-inside="true" :stroke-width="5" :percentage="percentage"></el-progress>
-      </div>
+      </transition-group>
+    </div>
+    <div class="xk-qs-form-footer">
+      <el-button class="xk-qs-btn-left" type="default" @click="onPrevHander">{{prevBtnText}}</el-button>
+      <el-button v-if="stepNow != stepLength" class="xk-qs-btn-right" type="primary" @click="onNextHander">{{nextBtnText}}</el-button>
+      <el-button v-if="stepNow == stepLength" class="xk-qs-btn-right" type="primary" @click="onSubmitHander">{{submitBtnText}}</el-button>
+      <el-progress class="xs-qs-progress" :text-inside="true" :stroke-width="5" :percentage="percentage"></el-progress>
     </div>
   </div>
 </template>
@@ -28,6 +30,10 @@ export default {
       default: '',
       type: [Array, Object],
     },
+    height: {
+      default: '250px',
+      type: String
+    },
     prevBtnText: {
       default: '上一步',
       type: String,
@@ -36,8 +42,8 @@ export default {
       default: '下一步',
       type: String,
     },
-    finishBtnText: {
-      default: '完成',
+    submitBtnText: {
+      default: '提交',
       type: String,
     },
     value: {
@@ -74,7 +80,6 @@ export default {
         this.step ++
       }
       if (stepNow == this.stepLength) {
-        console.log('end')
         this.$emit('atend')
       }
     },
@@ -86,8 +91,8 @@ export default {
       }
     },
     // 点击完成
-    onFinishHander () {
-      this.$emit('finish')
+    onSubmitHander () {
+      this.$emit('submit')
     },
     // 到达最后
     onAtendHander () {
@@ -95,9 +100,7 @@ export default {
     },
     onClickRadioHander() {
       if (this.autoNext) {
-        setTimeout (() => {
-          this.onNextHander()
-        }, 500)
+        this.onNextHander()
       }
     }
   },
@@ -115,6 +118,15 @@ export default {
 </script>
 
 <style>
+  .xk-qs-form-body{
+    position: relative;
+    overflow: auto;
+  }
+  .xk-qs-form-item{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
   .xk-qs-title {
     color: #000;
     font-weight: block;
