@@ -68,7 +68,8 @@ export default {
       return this.step + 1
     },
     percentage () {
-      return parseInt(this.stepNow / this.stepLength * 100)
+      let percentage = parseInt(this.stepNow / this.stepLength * 100) || 0
+      return percentage
     }
   },
   methods: {
@@ -100,8 +101,22 @@ export default {
     },
     onClickRadioHander() {
       if (this.autoNext) {
-        this.onNextHander()
+        setTimeout(() => {
+          this.onNextHander()
+        }, 500)
       }
+    },
+    //重置表单
+    resetForm() {
+      this.form = this.valueInit()
+    },
+    //表单初始化
+    valueInit() {
+      let form = {}
+      this.data.forEach((item) => {
+        form[item.key] = ''
+      })
+      return form
     }
   },
   watch: {
@@ -110,8 +125,12 @@ export default {
     }
   },
   mounted () {
-    if (this.value) {
-      this.form = this.value
+    let value = this.value
+    let form  = this.valueInit()
+    if (JSON.stringify(value) == "{}") {
+      this.form = form
+    } else {
+      this.form = Object.assign(form, value)
     }
   }
 }

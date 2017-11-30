@@ -8,9 +8,8 @@ Vue quick step form, Vue快速问卷表单
 [![Codecov](https://img.shields.io/codecov/c/github/xanke/vue-qs-form.svg)](https://codecov.io/gh/xanke/vue-qs-form)
 [![npm](https://img.shields.io/npm/l/vue-qs-form.svg)](http://opensource.org/licenses/MIT)
 
-****需配合element-ui使用
-https://github.com/elemefe
-****
+****需配合element-ui使用 https://github.com/elemefe****
+
 
 ## 快速开始
 ```js
@@ -81,6 +80,11 @@ export default {
 |-----|-----------|--------|
 |submit|点击提交事件|表单数据|
 |atend|到达最后|-|
+
+## Function
+|方法名称|说明|回调参数|
+|-----|-----------|--------|
+|restForm|重置表单|-|
 
 ## License
 
