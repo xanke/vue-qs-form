@@ -120,10 +120,10 @@ export default {
     }
   },
   watch: {
-    form(nVal, oVal) {
+    form() {
       this.$emit('input', this.form)
     },
-    data(nVal) {
+    data() {
       this.form = this.valueInit()
     }
   },

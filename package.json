@@ -2,7 +2,7 @@
   "name": "vue-qs-form",
   "version": "0.5.4",
   "description": "Vue quick steps form tool",
-  "author": "xank",
+  "author": "xank@qq.com",
   "main": "dist/vue-qs-form.min.js",
   "repository": {
     "type": "git",
