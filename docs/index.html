@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vue Qs Form demo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <style>
+    </style>
+  </head>
+  <body>
+    <div id="app" v-cloak>
+      <section class="hero is-primary is-bold">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title">
+              Vue Qs Form
+            </h1>
+            <h2 class="subtitle">
+              Vue快速问卷表单
+            </h2>
+          </div>
+        </div>
+      </section>
+      <div class="section container">
+        <div class="columns is-multiline is-mobile">
+          <div class="column is-12 has-text-centered">
+            <p class="control">
+              <label class="label">Form: {{ form }} </label>
+              <vue-qs-Form v-model="form" :data="data"></vue-qs-form>
+            </p>
+          </div>
+        </div>
+        <hr>
+      </div>
+      <br>
+      <footer class="footer">
+        <div class="container">
+          <div class="content has-text-centered">
+            <p>
+              <strong>Vue Birthday Input</strong> by Xank. The source code is licensed
+              <a href="http://opensource.org/licenses/mit-license.php">MIT</a>
+            </p>
+            <p>
+              <a href="https://www.npmjs.com/package/vue-birthday-input" target="_blank">
+                <img src="https://img.shields.io/npm/v/vue-birthday-input.svg">
+                <img src="https://img.shields.io/npm/dt/vue-birthday-input.svg">
+                <img src="https://img.shields.io/npm/dm/vue-birthday-input.svg">
+                <img src="https://img.shields.io/npm/l/vue-birthday-input.svg">
+              </a>
+            </p>
+            <p>
+              <a href="https://github.com/xanke/vue-birthday-input" target="_blank">
+                <img src="https://img.shields.io/github/stars/xanke/vue-birthday-input.svg?style=social&label=Star">
+                <img src="https://img.shields.io/github/forks/xanke/vue-birthday-input.svg?style=social&label=Fork">
+              </a>
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="https://unpkg.com/vue-qs-form"></script>
+    <script>
+      Vue.use(VueQsForm.default)
+      new Vue({
+        el: '#app',
+        data: {
+          form: '',
+          data: [
+            {
+              'key': 'qa1',
+              'title': '问题一',
+              'radios': [
+                [0, '否'],
+                [1, '是']
+              ]
+            },
+            {
+              'key': 'qa2',
+              'title': '问题二',
+              'radios': [
+                [0, '否'],
+                [1, '是']
+              ]
+            }
+          ]
+        }
+      })
+    </script>
+  </body>
+</html>

@@ -28,7 +28,7 @@ export default {
 ## 示例
 ```vue
 <template>
-  <vueQsForm v-model="form" :data="data" @finish="submitForm"></vueQsForm>
+  <vue-qs-form v-model="form" :data="data" @finish="submitForm"></vue-qs-form>
 </template>
 
 <script>
